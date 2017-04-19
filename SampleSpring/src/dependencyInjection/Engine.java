@@ -1,0 +1,19 @@
+package dependencyInjection;
+
+public class Engine implements EngineInterface {
+	String enginename;
+	
+	public Engine(String enginename) {
+		// TODO Auto-generated constructor stub
+		this.enginename=enginename;
+	}
+	public void estart()
+	{
+		System.out.println("Engine starttt "+enginename);
+	}
+	
+	public void estop()
+	{
+		System.out.println("Engine stopppp"+enginename);
+	}
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="todo">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+.done {
+	text-decoration: line-through;
+	color: #ccc;
+}
+</style>
+<script src="angular.min.js"></script>
+<script>
+	var module = angular.module("todo", []);
+	module.controller("c1", function($scope) {
+		$scope.listoftodo = [ {
+			'title' : "build a newtodo",
+			'done' : false
+		} ];
+		$scope.addtodo = function() {
+			$scope.listoftodo.push({
+				'title' : $scope.newtodo,
+				'done' : false
+			});
+		};
+		
+		$scope.clearCompleted=function(){
+			$scope.listoftodo=$scope.listoftodo.filter(function(i){
+				//return !i.done;
+				if(i.done==false)
+					{
+					return true;
+					}
+				else
+					{
+					return false;
+					}
+			})
+		};
+	});
+</script>
+</head>
+<body>
+	<div ng-controller="c1">
+		<form name="frm" ng-submit="addtodo()">
+			<input type="text" ng-model="newtodo" required>
+			<button ng-disabled="frm.$invalid">go</button>
+		</form>
+		<button ng-click="clearCompleted()">clear completed</button>
+		<ul>
+			<li ng-repeat="l in listoftodo"><input type="checkbox"
+				ng-model="l.done" /> 
+				<span ng-class="{'done':l.done}">{{l.title}}</span></li>
+		</ul>
+	</div>
+</body>
+</html>

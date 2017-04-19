@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	        http://www.springframework.org/schema/aop 
+	        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	        http://www.springframework.org/schema/context 
+	        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+
+	<!-- <bean id="t" class="com.draw.Triangle" init-method="myInit" destroy-method="myDestroy" >
+		<property name="namei" value="santrooo"></property>
+		<property name="height" value="456"></property> -->
+		
+		<!-- <constructor-arg index="0" value="acute triangle" />
+		<constructor-arg index="1" value="123" type="int" /> -->
+	<!-- </bean> -->
+<!--  <context:property-placeholder location="classpath:/pointsconfig.properties"/> 
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="locations" value="com.draw.pointsconfig.properties"></property>
+	</bean> -->
+	
+	
+
+
+
+	<bean id="pc" class="com.draw.Point">
+		<property name="x" value="10"></property>
+		<property name="y" value="10"></property>
+	</bean>
+
+	 <!-- <bean id="pa" class="com.draw.Point">
+		<property name="x" value="1000"></property>
+		<property name="y" value="1000"></property>
+	</bean>
+
+	<bean id="pb" class="com.draw.Point">
+		<property name="x" value="100"></property>
+		<property name="y" value="100"></property>
+	</bean>
+
+	<bean id="r" class="com.draw.Rectangle" autowire="byName">
+	
+		 <property name="pa">
+			<bean class="com.draw.Point">
+				<property name="x" value="1000"></property>
+				<property name="y" value="1000"></property>
+			</bean>
+		</property>
+		<property name="pb" ref="pbx"></property>
+		<property name="pc" ref="pcx"></property>
+		
+		<property name="plist">
+		<ref bean="pbx"/>
+		</property>
+		
+	</bean> -->
+	
+	<!-- <alias name="r" alias="rect"/>
+	 <bean class="com.draw.DisplayNameBeanPost"></bean> -->
+	 
+	 <bean id="c" class="com.draw.Circle">
+		<property name="name" value="round circle" />
+		<!-- <property name="center" ref="pa" /> -->
+	</bean>
+	<!-- <bean class="org.springframework.beans.factory.RequiredAnnotationPostProcessor"></bean> -->
+	<bean class="org.springframework.beans.factory.AutowiredAnnotationBeanPostProcessor"></bean>
+</beans>

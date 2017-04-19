@@ -1,0 +1,49 @@
+header
+{
+	/* property:value */
+	background-color:olive;
+	color: pink;
+	padding: 12px;
+	border: 1;
+	text-align: center;
+
+}
+
+
+footer 
+{
+	font-style: italic;
+	background-color: olive;
+	color: pink;
+	padding: 12px;
+	border: 1;
+	text-align: center;
+	font-weight: bold;
+	
+}
+
+body
+{
+	font-style: italic;
+	background-color: grey;
+	text-align: center;
+}
+
+#divA
+{
+	text-align: center;
+	align:center;
+	margin:auto;
+	width:30%;
+}
+
+table
+{
+	font-style: italic;
+	background-color: #ff0080;
+	color: pink;
+	padding: 10px;
+	text-align: center;
+	border="2";
+	align:center;
+}

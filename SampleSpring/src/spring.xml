@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<bean id="engine" class="dependencyInjection.Engine">
+	<constructor-arg value="Chandraaaaaaaaaaaaaaanameeeeee" ></constructor-arg>
+	</bean>
+	
+	
+	<bean id="engine2" class="dependencyInjection.Engine">
+	<constructor-arg value="engineeeeenameeeee" ></constructor-arg>
+	</bean>
+	
+	
+	<bean id="engine1" class="dependencyInjection.SpecialEngine"></bean>
+	
+	<bean id="fronttyre" class="dependencyInjection.Tyre">
+	<property name="tyrename" value="front tyre"></property>
+	</bean>
+	
+	<bean id="backtyre" class="dependencyInjection.Tyre">
+	<property name="tyrename" value="back tyre"></property>
+	</bean>
+	
+	
+	<bean id="car" class="dependencyInjection.Car" scope="prototype" autowire="byName">
+	
+	 <!-- <constructor-arg ref="engine" ></constructor-arg> 
+	<constructor-arg value="Keerthana" ></constructor-arg>
+	<constructor-arg value="120" ></constructor-arg> -->
+	
+	
+	<property name="name" value="Honda"></property>
+	<property name="cc" value="120"></property>
+	 <property name="engine" ref="engine1"></property> 
+	
+	</bean>
+	
+	
+	<bean id="bike" class="dependencyInjection.Bike">
+	<property name="name" value="chandra"></property>
+	<property  name="tyres">
+	<set>
+		<ref bean="fronttyre"/>
+		<ref bean="backtyre"/>
+	</set>
+	</property>
+	</bean>
+	
+	
+	</beans>

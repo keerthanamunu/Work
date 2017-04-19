@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:context="http://www.springframework.org/schema/context"
+		
+		
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+	        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<context:annotation-config></context:annotation-config>
+	
+	
+	 <bean id="engine1" class="annotation.Engine">
+	 <constructor-arg value="engine valueeeeeeeeeeeeeeeeee">
+	 </constructor-arg></bean>
+	 
+	<bean id="engine2" class="annotation.Engine">
+	<constructor-arg value="engine222 valueeeeeeeeeeeeeeeeee">
+	 </constructor-arg>	
+	</bean> 
+	
+	<bean id="car" class="annotation.Car">	</bean>
+	
+	
+	<bean id="luxory" class="annotation.LuxoryModel"></bean>
+	<bean id="economy" class="annotation.EconomyModel"></bean>
+	
+	<!-- <bean id="luxory" class="annotation.LuxousModel"></bean>
+	<bean id="economy" class="annotation.EconomyModel">	</bean> -->
+	
+	
+	<context:property-placeholder location="classpath:/value.properties"></context:property-placeholder>
+	
+	</beans>

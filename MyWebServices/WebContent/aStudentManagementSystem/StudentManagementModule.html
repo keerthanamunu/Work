@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html ng-app="student">
+<head>
+<meta charset="ISO-8859-1">
+<title>Student Form</title>
+<script src="angular.min.js"></script>
+<!-- <script src="courseModule.js"></script> -->
+<link rel="stylesheet" href="style.css">
+
+<script>
+function Student(id,name,marks,age)
+{
+	this.id=id;
+	this.name=name;
+	this.marks=marks;
+	this.age=age;
+};
+
+var module=angular.module("student",[]);
+module.controller("StudentRegistrationController",function($scope,$rootScope,$http)
+{		
+		//method to save new record
+		$scope.Register=function()
+		{
+			alert("function register");
+			var id=$scope.id;
+			var name=$scope.name;
+			var marks=$scope.marks;
+			var age=$scope.age;
+			
+			var sObj  = new Student(id,name,marks,age);
+			console.log("id"+sObj.id);
+			var promise=$http.post("http://localhost:8080/MyWebServices/rest/studentWeb/insertStudentJSON",sObj);
+			promise.then(success,failure);
+			
+			function success(response){
+				console.log(response.status);
+			}
+			
+			function failure(){
+				alert("error");
+			}
+			$rootScope.$broadcast("passingEvent",sObj);
+		};
+		
+		
+		//listening to broadcast for updation
+		$scope.$on("passingUpdatedStudent",function(event,args){
+			//document.getElementById("id").value=args
+			$scope.id=args.id;
+			$scope.name=args.name;
+			$scope.age=args.age;
+			$scope.marks=args.marks;
+		});	
+	
+		//method to update the record
+		$scope.SaveUpdate=function()
+		{
+			alert("saveUpdate");
+			var id=$scope.id;
+			var name=$scope.name;
+			var marks=$scope.marks;
+			var age=$scope.age;
+			
+			var sObj  = new Student(id,name,marks,age);
+			console.log("id"+sObj.id);
+			var promise=$http.post("http://localhost:8080/MyWebServices/rest/studentWeb/update",sObj);
+			promise.then(success,failure);
+			
+			function success(response){
+				console.log(response.status);
+			}
+			
+			function failure(){
+				alert("error");
+			}
+			$rootScope.$broadcast("passingEvent",sObj);
+		};
+	
+});
+
+
+
+
+
+//controller to display the records
+module.controller("StudentDetailController",function($scope,$http,$rootScope)
+{	
+	
+	//for broadcast
+	 $scope.$on("passingEvent",function(event,args){
+			console.log(event);
+			$scope.students.push(args);
+		});	
+	 
+	//to display the data
+	var promise = $http.get("http://localhost:8080/MyWebServices/rest/studentWeb/studentJSON");
+	promise.then(success,failure);
+	
+	function success(response){
+		$scope.students= response.data;
+	}
+	function failure(){
+		alert("error in get details");
+	}
+	
+	
+					//Deleteee method
+					$scope.Delete=function()
+					{	
+						alert("in delete"+$scope.selectedId);
+						var promise = $http.post("http://localhost:8080/MyWebServices/rest/studentWeb/delete?id="+$scope.selectedId);
+						promise.then(suc,fai);
+						function suc(response)
+						{
+							console.log(response.status);
+						}
+						function fai()
+						{
+							alert("failed delete");
+						}
+						
+					}; 
+					
+					//method to populateeee in the form fields
+					$scope.populate=function()
+					{
+						var stu={};
+						console.log($scope.selectedId);
+						angular.forEach($scope.students,function(s,index)
+								{
+									if(s.id==$scope.selectedId)
+									{
+										stu.id=s.id;
+										stu.name=s.name;
+										stu.age=s.age;
+										stu.marks=s.marks;
+										$rootScope.$broadcast("passingUpdatedStudent",stu);
+									}
+								});
+						
+						
+					};
+					
+					
+					
+					
+			
+});  
+</script>
+
+
+</head>
+<body>
+<header>
+<h1>Course Management System</h1>
+</header>
+<br><br><br>
+	
+	 <div ng-controller="StudentDetailController" id="divA">
+	
+		<table borfer="1" class="table">
+			<tr class="success">
+				<td>id</td>
+				<td>name</td>
+				<td>marks</td>
+				<td>age</td>
+			</tr>
+			<tr class="info" ng-repeat="s in students">
+				<td><input type="radio" ng-model="$parent.selectedId" name="id" value="{{s.id}}">{{s.id}}</td>
+				<td>{{s.marks}}</td>
+				<td>{{s.age}}</td>
+				<td>{{s.name}}</td>
+			</tr>
+		</table> <br><br>
+		<input type="button" value="Delete" ng-click="Delete()">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="populate" ng-click="populate()">
+	
+	</div>
+	
+	<br><br><br>
+	
+	<div ng-controller="StudentRegistrationController" id="divB">
+	<h2>Course Registration Form</h2>
+	Id   : <input type="text" ng-model="id" id="id"><br><br>
+	Name : <input type="text" ng-model="name" id="name"><br><br>
+	Age   :<input type="text" ng-model="age" id="age"><br><br>
+	Marks : <input type="text" ng-model="marks" id="marks"><br><br>
+	<input type="button" value="Submit" ng-click="Register()"><br><br>
+	<input type="button" value="Save-Update" ng-click="SaveUpdate()">
+	
+	</div>
+	
+	
+<br><br><br>	
+<footer>
+ <h4>Course Managemnet System -Peri Software - March 2017</h4>
+</footer>	
+</body>
+</html>
