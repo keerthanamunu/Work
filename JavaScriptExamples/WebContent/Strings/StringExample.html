@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>STRING</title>
+<script type="text/javascript">
+var a='helloo';
+console.log(typeof a);
+console.log();
+console.log(a.toLocaleLowerCase());
+
+var b= new String("helloObject String");
+console.log(typeof b);
+console.log(b.toLocaleLowerCase());
+
+//charAt
+console.log('abcdef'.charAt(4));
+console.log('abcdef'.charAt(9));
+
+//indexOf
+console.log('abcdef'.indexOf('b'));
+console.log('abcdef'.indexOf('ef'));
+
+//split
+var x="this is my sentence";
+var sent = x.split(" ",2);
+console.log(sent);
+
+var y='kgambira@gmail.com';
+var ysent = y.split("@");
+console.log(ysent);
+
+//slice
+console.log('abcdef'.slice(2));
+console.log('abcdef'.slice(1,2));
+
+
+//compare same=0, second greater=-1 , first greater =1
+console.log('sapple'.localeCompare('danana'));
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

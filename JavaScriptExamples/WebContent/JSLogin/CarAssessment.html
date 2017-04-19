@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Car Assessment</title>
+<script type="text/javascript">
+car.prototype.start=function()
+{
+console.log('start in car');
+}
+
+car.prototype.drive=function()
+{
+console.log('drive in car');
+}
+
+car.prototype.stop=function()
+{
+console.log('stop in car');
+}
+
+function car(vname,vprice,vnumber)
+{
+	this.vname=vname;
+	this.vprice=vprice;
+	this.vnumber=vnumber;
+}
+
+subCar.prototype.fuelReduction=function()
+{
+	console.log('Fuel Reduction');
+}
+
+function subCar(vname,vprice,vnumber,mileage,type)
+{
+	car.call(this,vname,vprice,vnumber);
+	this.mileage=mileage;
+	this.type=type;
+}
+
+subCar.prototype=Object.create(car.prototype);
+
+var maruthi= new subCar('swift',5000,123,24,'sedan');
+var toyota = new subCar('solara',9000,234,26,'coop');
+var benz = new subCar('mercedes',15000,345,29,'suv');
+var audi = new subCar('audi A4',18000,456,30,'suv');
+
+var factory =[maruthi,toyota,benz,audi];
+
+console.log("*******Cars and their features**********");
+factory.forEach(function(a,i)
+		{
+		console.log("Car Name : " +a.vname+" type : "+a.type);
+		})
+		
+		
+		
+console.log("*******filter on mileage**********");
+var mileagefilter = factory.filter(function(b)
+		{
+		if(b.mileage < 25)
+			return true;
+		else
+			return false;
+		});
+		
+mileagefilter.forEach(function(a,i)
+		{
+		console.log("Car Name :" +a.vname+" type : "+a.type+" mileage :"+a.mileage);
+		});
+
+
+
+console.log("*******map on price**********");
+var statusmap = factory.map(function(c){
+	if(c.vprice > 10000)
+		{
+		c.status='luxury';
+		return c;
+		}
+	else
+		{
+		c.status='economic';
+		return c;
+		}
+});
+statusmap.forEach(function(a,i)
+		{
+		console.log("Car Name :" +a.vname+" type : "+a.type+" mileage :"+a.mileage+" price :"+a.vprice+" status :"+a.status);
+		});
+</script>
+</head>
+<body>
+Car Assessment
+</body>
+</html>

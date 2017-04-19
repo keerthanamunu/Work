@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="angular.min.js"></script>
+<script>
+var module = angular.module("demo",[]);
+module.constant("URL","http://localhost:8080/projectname/rest/studentService1");
+module.value("URL12","http://localhost:8080/projectname/rest/studentService");
+function Message(text)
+{
+	this.text=text;
+};
+
+module.config(["messageProvider","URL",function(messageProvider,URL){
+	console.log("in config"+URL);
+	messageProvider.setText("Helloooo World");
+}]);
+
+module.provider("message",[function(){
+	var text=null;
+	this.setText=function(textString){
+		console.log("in set funct");
+		text=textString;
+	};
+	this.$get =[function(){
+		console.log("$get");
+		return new Message(text);
+	}];
+}]);
+
+//more than 1 service with same using with factory gives injector error
+/* module.factory('message',function(){
+	console.log("factory");
+	return new Message(text);
+}); */
+
+module.controller("demoCtrl",function(message,URL,URL12)
+{
+	//var harshada="chitra";
+	//console.log(message.setText(harshada));
+	console.log("inside demo");
+	console.log(URL);
+	console.log(URL12);
+	console.log(message.text);
+});
+
+/* module.controller("demoCtrl1",function()
+		{
+			//var harshada="chitra";
+			//console.log(message.setText(harshada));
+			console.log("inside demo1");
+			//console.log(message.text);
+		});  */
+
+</script>
+</head>
+<body>
+<div ng-controller="demoCtrl">
+</div>
+<!-- 
+<div ng-controller="demoCtrl1">
+</div> -->
+</body>
+</html>

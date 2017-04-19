@@ -1,0 +1,40 @@
+!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+function Employee(name,age)
+{
+	this.name=name;
+	this.age=age;
+}
+
+Employee.prototype.attendanceMarking=function()
+{
+	console.log("attendance :"+this.name +" "+this.project);
+}
+
+function Manager(name,age,project)
+{
+	Employee.call(this,name,age);
+	this.project=project;
+}
+	
+Manager.prototype=Object.create(Employee.prototype);
+
+Manager.prototype.projectManagement = function()
+	{
+		console.log("project managing");
+	}
+	
+	var ramesh= new Manager('ramesh',34,'finance project');
+	ramesh.attendanceMarking();
+	ramesh.projectManagement();
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="directivesModuleApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.min.js"></script>
+
+    <script>
+        var module=angular.module('directivesModuleApp',[])
+
+        module.directive('myScopeExample', function () {
+            return {
+                scope:{
+                    employee: '=',
+                    action: '&'
+                },
+
+                template: 'Name: {{ employee.name }} age: {{employee.age}} ' +
+                '<button ng-click="action()">Change Data</button>',
+
+                link:function(scope,attr){
+                    scope.employee.age=45;
+                    console.log(scope);
+                    console.log(attr);
+                    console.log(arguments);
+                }
+            };
+        });
+
+        module.controller('nameController',function($scope){
+            $scope.employee={name:'ramesh',age:17};
+            $scope.name='ramesh';
+
+            var counter=17;
+            $scope.changeData = function () {
+                counter++;
+                $scope.employee = {
+                    name: 'dinesh',
+                    age: counter
+                };
+            };
+
+        })
+
+
+    </script>
+</head>
+<body ng-controller="nameController">
+{{employee}}
+
+<!--
+<my-scope-example attrName="{{employee.name}}"></my-scope-example>
+-->
+<div my-scope-example employee="employee" action="changeData()"></div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="testCtrlModule">
+<head>
+<meta charset="ISO-8859-1">
+<title>Service Angular</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+
+var module = angular.module("testCtrlModule",[]);
+
+module.factory("hellofcatory",
+	function(){
+	var obj={msg:"hello from factory"}
+		
+	return obj;
+	});
+	
+	
+module.controller("testCtrl",function($scope,hellofcatory)
+{		
+		$scope.msg=hellofcatory.msg;		
+});
+
+
+
+</script>
+</head>
+<body>
+<div  ng-controller="testCtrl">
+{{msg}}
+</div>
+</body>
+</html>

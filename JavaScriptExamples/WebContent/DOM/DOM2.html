@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>DOM2</title>
+</head>
+<body>
+hi text node
+<h1>hi</h1>
+
+<script type="text/javascript">
+var childNodes = document.body.childNodes;
+
+for(var i=0; i< childNodes.length;i++)
+	{
+	console.log("type :"+childNodes[i].nodeType);
+	console.log("name :"+childNodes[i].nodeName);
+	console.log("value :"+childNodes[i].nodeValue);
+	console.log("innerHTML :"+childNodes[i].innerHTML);
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="onewayBinding">
+<head>
+<meta charset="ISO-8859-1">
+<title>sample Angular</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+
+var module = angular.module("onewayBinding",[]);
+module.controller("demoCtrl",function($scope)
+{
+	$scope.employees=[
+		
+			{
+			"eId":123,
+			"ename":"chandra",
+			"salary":2000
+			},
+		
+			{
+			"eId":123,
+			"ename":"bobby",
+			"salary":3000
+			},
+		
+			{"eId":123,
+			"ename":"sanju",
+			"salary":4000},
+			
+			{"eId":123,
+			"ename":"abhinay",
+			"salary":5000}
+	];
+	$scope.selection=[];
+	$scope.selection.selectedView="tableView.html";
+		
+});
+</script>
+</head>
+<body ng-controller="demoCtrl">
+
+<!-- 
+
+ -->
+<input type="radio" name="selection" ng-model="selection.selectedView" value="tableView.html">Display table format</br>
+<input type="radio" name="selection" ng-model="selection.selectedView" value="listView.html">Display List format</br>
+
+the slected view is {{selection.selectedView}}<br>
+<ng-include src="selection.selectedView"></ng-include>
+
+</body>
+</html>

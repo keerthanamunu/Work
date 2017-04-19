@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+var employeePrototypeObj={
+		attendance:function(){
+			console.log(this.name+'attendance marking');
+		}
+}
+
+var rameshobj={
+		Id:1001,
+		name:'ramesh',
+		age:34,
+		/* attendance:function()
+		{
+			super.attendance();
+			console.log(this.name+'attendance marking child');
+		}, */
+		__proto__:employeePrototypeObj
+		/* attendance:function display()
+		{
+			console.log(this.id);
+		} */
+};
+
+var sureshobj={
+		Id:1002,
+		name:'suresh',
+		age:33,
+		
+		__proto__:employeePrototypeObj
+		/* attendance:function display()
+		{
+			console.log(this.id);
+		} */
+};
+
+console.log(rameshobj);
+rameshobj.attendance();
+
+employeePrototypeObj.bonus=function()
+{
+	console.log(this.Id+'bonus');
+	}
+	
+	console.log(window);
+	console.log(document);
+	console.log(employeePrototypeObj);
+	console.log(rameshobj);
+	
+rameshobj.bonus();
+	
+</script>
+</head>
+<body>
+kkkkk
+</body>
+</html>

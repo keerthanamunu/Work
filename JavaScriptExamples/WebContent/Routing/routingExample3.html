@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="routeApp">
+<head>
+    <title>Employee</title>
+    <!-- <link href="../bootstrap.css" rel="stylesheet" />
+    <link href="../bootstrap-theme.css" rel="stylesheet" /> -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="angular.js"></script>
+    <script src="angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+
+    <script>
+        var module=angular.module("routeApp",['ngRoute','angular.filter']);
+        module.config(function($routeProvider){
+            $routeProvider.when('/employee/:id',
+                    {
+                        "templateUrl":"partialTemplates/employeeDetail.html",
+                        "controller":"employeeDetailsController"
+                    })
+            $routeProvider.when('/employee',
+                    {
+                        "templateUrl":"partialTemplates/employee.html",
+                        "controller":"employeeController"
+                    })
+                    .when('/registration',
+                    {
+                        "templateUrl":"partialTemplates/registration.html",
+                        "controller":"registrationController"
+                    })
+                    .when('/login',
+                    {"templateUrl":"partialTemplates/login.html",
+                        "controller":"loginController"
+                    }
+            )
+                    .otherwise({redirectTo:"login"})
+        })
+
+    </script>
+
+    <script src="employeeController.js"></script>
+<body ng-controller="employeeMainController">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>
+            Employee Managment System
+            <span class="label label-primary"></span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ng-view></ng-view>
+    </div>
+</div>
+</body>
+</html>

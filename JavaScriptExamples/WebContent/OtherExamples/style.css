@@ -1,0 +1,65 @@
+/* selector */
+header
+{
+	/* property:value */
+	background-color:blue;
+	color: pink;
+	padding: 12px;
+	border: 1;
+	text-align: center;
+
+}
+header h1
+{
+	color: lime;
+}
+
+footer .disc
+{
+	font-style: italic;
+	background-color: blue;
+	color: pink;
+	padding: 12px;
+	border: 1;
+	text-align: center;
+	font-weight: bold;
+}
+
+footer .disc
+{
+	color: red;
+}
+main
+{
+	
+}
+main h1
+{
+	padding: 20px;
+}
+
+nav
+{
+	float: left;
+}
+
+aside
+{
+	float: right;
+}
+
+aside figure
+{
+	font-size: 9;
+	font-style: italic;
+}
+
+#p1
+{
+	color: red;
+}
+
+.c1
+{
+	color: purple;
+}

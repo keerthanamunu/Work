@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="directivesModuleApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="angular.min.js"></script>
+
+<script>
+    var module=angular.module('directivesModuleApp',[])
+
+    module.directive('myScopeExample', function () {
+        return {//isloated scope
+        	scope:{
+        		name:'@attrName' //string
+        	}, //doesn't print the values bcoz direcct scope is associated and no values are present in that scope
+            template: 'Name: {{employee.name}} Street: {{employee.age}}',
+            link:function(scope,element,attr){
+            	console.log(scope);
+            	console.log(element);
+            	console.log(attr);
+            }
+        };
+    });
+
+    module.controller('nameController',function($scope){
+        $scope.employee={name:'ramesh',age:17};
+    })
+
+
+</script>
+</head>
+<body ng-controller="nameController">
+<my-scope-example></my-scope-example>
+<my-scope-example attrName=""></my-scope-example>
+</body>
+</html>

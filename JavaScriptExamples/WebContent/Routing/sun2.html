@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+<meta charset="ISO-8859-1">
+<title>sample Angular</title>
+<script src="angular.js"></script>
+<script src="angular-route.js"></script>
+
+<script>
+//console.log(angular);
+(function(){
+var amodule = angular.module("demo",['ngRoute']);
+amodule.config(function($routeProvider){
+	console.log("configuration phase");
+	console.log($routeProvider);
+	//console.log($route);
+	$routeProvider.when('/page1',
+					{
+						"templateUrl":"temp.html",
+						"controller":"pageCtrl1"
+					})
+					
+				  .when('/page2',{
+						"templateUrl":"temp1.html",
+						"controller":"pageCtrl2"
+					})
+					.when('/page3/:name',
+					{
+						"templateUrl":"temp3.html",
+						"controller":"pageCtrl3"
+					})
+				  .when('/default',{"templateUrl":"a.html"})
+				  .when('/',{"templateUrl":"a.html"})
+				  .otherwise({redirectTo:"default"})
+	
+});
+})();
+</script>
+<script src="cont.js"></script> 
+</head>
+<body>
+<h1>Header</h1>
+<div ng-view></div>
+<h3>Footer</h3>
+<a href="#page1">Page1</a>
+<a href="#page2">Page2</a>
+<a href="#brksdf">brokenlink</a>
+
+</body>
+</html>

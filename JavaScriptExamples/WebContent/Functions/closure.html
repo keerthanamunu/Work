@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+var addTo =function(passed)
+{
+	var add=function(inner)
+	{
+		return inner+passed;
+	}
+	return add;
+}
+	var x= new addTo(4);
+	console.dir(x(1));
+
+
+</script>
+</head>
+<body>
+closure
+</body>
+</html>

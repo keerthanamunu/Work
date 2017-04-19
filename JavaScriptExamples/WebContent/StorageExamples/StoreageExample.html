@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+function saveData()
+{
+	var localData = document.getElementById("localData").value;
+	var sessionData = document.getElementById("sessionData").value;
+	localStorage.setItem('localkey1', localData);
+	sessionStorage.setItem('sessionkey1', sessionData);
+	
+	//document.getElementById("output").innerHTML=localData+" "+sessionData;
+}
+
+function LoadData()
+{
+	alert("hiiii");
+	var localData = localStorage.getItem("localkey1");
+	var sessionData = sessionStorage.getItem("sessionkey1");
+	
+	if(localData!=null)
+		{
+		alert(localData);
+		}
+	
+	
+	if(sessionData!=null)
+	{
+	alert(sessionData);
+	}
+}
+
+function findAllItems()
+{
+	var itemList = document.getElementById("itemList");
+	itemList.innerHTML="";
+	
+	for(var i=0;i< localStorage.length;i++)
+		{
+		var key =localStorage.key(i);
+		var item = localStorage.getItem(key);
+		
+		var newItem = document.createElement("li");
+		newItem.innerHTML = key +" : "+item;
+		itemList.appendChild(newItem);
+		}
+}
+
+</script>
+</head>
+<body>
+<form action="">
+<fieldset>
+<legend>web Storage</legend>
+<label for="localData">Local data</label>
+<input id="localData"><br>
+<label for="sessionData"> Session data</label>
+<input id="sessionData"><br>
+</fieldset>
+<div>
+<button onclick="saveData()">Save Data</button>
+<button onclick="LoadData()">Load Data</button>
+<button onclick="findAllItems()">fetch Data</button>
+<ul id="itemList"></ul>
+</div>
+
+</form>
+<div id="output"><b></b></div>
+</body>
+</html>

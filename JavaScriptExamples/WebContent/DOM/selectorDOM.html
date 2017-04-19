@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Select a element</title>
+</head>
+<body>
+<header>headerrr</header>
+<h2>h2 taggg</h2>
+<p id="p">pppp</p>
+<p class="pclass">pclass </p>
+<p class="pclass">pclass1 </p>
+<p class="pclass">pclass2 </p>
+
+<div id="table1">
+
+</div>
+
+
+
+<script type="text/javascript">
+
+var e1= document.querySelector('header');
+console.log(e1);
+
+e1.innerHTML
+
+var e2= document.querySelector('.pclass');
+console.log(e2);
+
+var e3= document.querySelector('#p');
+console.log(e3);
+
+var e4= document.querySelectorAll('.pclass');
+console.log(e4);
+
+var t= document.querySelector('#table1');
+t.innerHTML ="<table border='1'>"+
+	"<tr><td>name</td><td>keerthana</td></tr>"+
+	"<tr><td>name</td><td>keerthana</td></tr>"+
+	"</table>";
+
+</script>
+</body>
+</html>

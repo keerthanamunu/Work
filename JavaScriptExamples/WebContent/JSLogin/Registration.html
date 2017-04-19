@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+
+<script type="text/javascript">
+
+function User(uname,pwd,cpwd,gender,job,dob,salary)
+{
+	alert("user function");
+	this.uname=uname;
+	this.pwd=pwd;
+	this.cpwd=cpwd;
+	this.gender=gender;
+	this.job=job;
+	this.dob=dob;
+	this.salary=salary;
+}
+
+function submitValidation()
+{
+	alert('hellooo');
+	var uname= document.getElementById('uname').value;
+	var pwd= document.getElementById('pwd').value;
+	var cpwd= document.getElementById('cpwd').value;
+	
+	var gender= document.getElementsByName('gender')[0].value;
+	
+	var e= document.getElementById('job');
+	var job=e.options[e.selectedIndex].value;
+	
+	var dob= document.getElementById('dob').value;
+	var salary= document.getElementById('salary').value;
+	console.log(uname);
+	console.log(gender)
+	console.log(pwd);
+	console.log(job);
+	console.log(dob);
+	console.log(salary);
+					
+	var userObj= new User(uname,pwd,cpwd,gender,job,dob,salary);
+	var userJSONText=JSON.stringify(userObj);
+	
+	console.log(userJSONText);
+	
+	console.log(localStorage);
+	localStorage.setItem(userObj.uname,userJSONText);
+	return false;
+}
+
+
+</script>
+
+
+</head>
+<body>
+<form action="Login.html">
+
+  First name:
+  <input type="text" id="uname" name="uname"><br><br>
+  password:
+  <input type="password" id="pwd" name="pwd"><br><br>
+  confirm pwd:
+  <input type="password" id="cpwd" name="cpwd"><br><br>
+  
+  Job status
+  <select id="job">
+  <option  value="student">student</option>
+  <option  value="Masters">Masters</option>
+  <option  value="Job">Job</option>
+  </select>
+  
+  
+  <br><br>
+  Gender <br><br>
+  <div>
+  <input type="radio"  name="gender" value="male"> Male<br>
+  <input type="radio"  name="gender" value="female"> Female<br>
+  <br><br>
+  DOB
+  <input id='dob' type="date"> <br><br>
+  Salary:
+  <input type="text" id="salary" name="salary"><br><br>
+  <input type="button" value="submit" onclick="return submitValidation()" > &nbsp;&nbsp;
+  <input type="reset" value="reset">
+</form>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="User">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome1</title>
+<script src="angular.min.js"></script>
+<link rel="stylesheet" href="../bootstrap/bootstrap/css/bootstrap.min.css">
+<script>
+var module=angular.module("User",[]);
+//controller1
+
+	module.controller("demoCtrl", function($scope) {
+
+		var details = [];
+
+		for (var i = 0; i < localStorage.length; i++) {
+
+			//	var JSONobjectsArray = [];
+
+			var key = localStorage.key(i);
+			var JSONobj = localStorage.getItem(key);
+			var JSobject = JSON.parse(JSONobj);
+
+			details.push(JSobject);
+			//console.log(details);
+			console.log(details.length);
+		}
+		
+		$scope.$on("passingEvent", function(event, args) {
+			console.log(event);
+
+			var x = args;
+			console.log(x);
+			details.push(x);
+			var userJSONText=JSON.stringify(x);
+			localStorage.setItem(x.uname,userJSONText);
+
+		});
+
+		$scope.tableDetails = details;
+
+	});
+
+	//controller2 for broadcasting
+	module.controller("demoCtrl1", function($scope, $rootScope) {
+		
+		$scope.DataValidation = function() {
+			alert("in functionnn");
+			console.log($scope.uname);
+			console.log($scope.pwd);
+			console.log($scope.cpwd);
+			console.log($scope.job);
+			console.log($scope.gender);
+			console.log($scope.dob);
+			console.log($scope.salary);
+
+			var obj = {
+				uname : $scope.uname,
+				pwd : $scope.pwd,
+				job : $scope.job,
+				gender : $scope.gender,
+				dob : $scope.dob,
+				salary : $scope.salary
+			};
+
+			$rootScope.$broadcast("passingEvent", obj);
+
+		}
+	});
+</script>
+</head>
+
+
+<body>
+
+
+	<div ng-controller="demoCtrl" class="container">
+		<table border="2" class="table">
+			<tr class="success">
+				<td>Name</td>
+				<td>Pwd</td>
+				<td>gender</td>
+				<td>DOB</td>
+				<td>Salary</td>
+				<td>Job</td>
+			</tr>
+			<tr class="info" ng-repeat="e in tableDetails">
+				<td>{{e.uname}}</td>
+				<td>{{e.pwd}}</td>
+				<td>{{e.gender}}</td>
+				<td>{{e.dob}}</td>
+				<td>{{e.salary}}</td>
+				<td>{{e.job}}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<br>
+	<br>
+	
+	
+	
+	<div ng-controller="demoCtrl1">
+
+		First name: <input type="text" ng-model="uname" name="uname"><br><br> 
+		password: <input type="password" ng-model="pwd" name="pwd"><br><br> 
+		confirm pwd: <input type="password" ng-model="cpwd" name="cpwd"><br><br> 
+		Job status <select ng-model="job">
+			<option value="student">student</option>
+			<option value="Masters">Masters</option>
+			<option value="Job">Job</option>
+		</select> <br><br>
+		 Gender
+		<br>
+		<div>
+			<input type="radio" ng-model="gender" value="male"> Male<br>
+			<input type="radio" ng-model="gender" value="female"> Female<br><br>
+			
+			 DOB <input ng-model='dob' type="date"> <br><br>
+			 Salary: <input type="text" ng-model="salary" name="salary"><br><br>
+			 
+			
+			<input type="button" value="submit" ng-click="DataValidation()">
+
+
+		</div>
+</body>
+</html>

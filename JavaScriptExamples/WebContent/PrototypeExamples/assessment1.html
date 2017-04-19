@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Proto</title>
+<script type="text/javascript">
+
+var carPrototypeObj={
+		engine:function()
+		{
+			console.log(this.type+'  engine started and Price is :'+this.price)
+		}
+};
+
+var car1={
+		type:'luxury_car',
+		price:20000,
+		__proto__:carPrototypeObj
+};
+
+var car2={
+		type:'economy_car',
+		price:10000,
+		__proto__:carPrototypeObj
+};
+
+var car3={
+		type:'luxory+economy_car',
+		price:30000,
+		__proto__:carPrototypeObj
+};
+
+car1.engine();
+car2.engine();
+car3.engine();
+</script>
+</head>
+<body>
+Proto-type
+</body>
+</html>

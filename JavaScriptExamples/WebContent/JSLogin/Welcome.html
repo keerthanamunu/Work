@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome Page</title>
+<script type="text/javascript">
+	alert("in welcomePage function");
+	function display() {
+		//header
+		var h = document.querySelector('#header');
+		h.innerHTML = "Details of the Person";
+
+		//table
+		var x = "<table border='2'>";
+
+		//array for the JS objects
+		var details = [];
+
+		for (var i = 0; i < localStorage.length; i++) {
+
+			var JSONobjectsArray = [];
+
+			var key = localStorage.key(i);
+			var JSONobj = localStorage.getItem(key);
+			var JSobject = JSON.parse(JSONobj);
+
+			details.push(JSobject);
+			console.log(details);
+			console.log(details.length);
+		}
+		
+		var r;
+		var updatedSchool=details.map(function(b){
+			if(b.gender== 'male')
+			{
+				r="<tr><td>"+b.uname+"</td><td>"+b.pwd+"</td><td>"+b.job+"</td><td>"+b.dob+"</td></tr>";
+			}
+			return r;
+		}) 
+
+		updatedSchool.forEach(function(s, index) {
+	
+				x+= s;
+					//"<tr><td>"+s.uname+"</td><td>"+s.age+"</td><td>"+s.job+"</td><td>"+s.dob+"</td></tr>";
+		});
+		
+		x+="</table>";
+		
+		var t= document.querySelector('#table1');
+		t.innerHTML=x;
+		
+
+	}
+</script>
+</head>
+<body onload="display()">
+	<div id="header"></div>
+	<div id="table1"></div>
+
+</body>
+</html>

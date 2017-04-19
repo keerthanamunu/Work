@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="angular.min.js"></script>
+<script>
+var module = angular.module("demo",[]);
+module.controller("demoCtrl",function($scope)
+{
+	console.log("inside the controller");
+	$scope.name='ramesh';
+});
+module.directive("helloWorld",function(){
+	return {
+		//restrict:"A",
+		template: "name: {{name}}",
+		link:function(scope,element,attr){
+			scope.name="dhinesh";
+			console.log('inside tyhe link');
+		}
+	}
+});
+</script>
+</head>
+<body ng-controller="demoCtrl">
+{{name}}<br><br>
+<hello-world></hello-world>
+<div></div>
+</body>
+</html>

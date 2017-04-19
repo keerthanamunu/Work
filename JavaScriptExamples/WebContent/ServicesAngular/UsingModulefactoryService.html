@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="testCtrlModule">
+<head>
+<meta charset="ISO-8859-1">
+<title>Service Angular</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+
+var module = angular.module("testCtrlModule",[]);
+
+module.factory("nameService",function()
+{
+	var obj={
+			name:"keerthana",
+			setName:function(name)
+			{
+				console.log("inside setName:"+name);
+				this.name=name;
+			},
+			getName:function()
+			{
+				console.log("inside getter: "+this.name);
+				return this.name;
+			}
+		}
+			return obj;//sets the obj to nameService so that we access its methods
+		
+	});
+	
+	
+module.controller("testCtrl",function($scope,nameService)
+{
+		var data="this is from controller";
+		$scope.names=["keer","harshad","ramesh","suresh"];
+		
+		$scope.somefunction = function()
+		{
+			console.log(nameService.getName());//gives already existing name keerthana
+			nameService.setName($scope.name);//sets the selected name in select box
+			console.log(nameService.getName());//prints the new name which is set in the setMethod
+		}
+		
+		
+});
+
+module.controller("testCtrl1",function($scope,nameService){
+	$scope.nameService=nameService;//we are assgning the nameservice to $scope.nameservice 
+	//so that we can access its method its method and print the value in other controller
+	console.log($scope);
+	});
+
+</script>
+</head>
+<body>
+<div  ng-controller="testCtrl">
+<select ng-options="name for name in names" ng-model="name"></select>
+<input type="button" ng-click="somefunction()" value="click">
+</div>
+
+<div ng-controller="testCtrl1">	
+{{nameService.getName()}}</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+function parentclass()
+{
+this.parent_property1="hello from parent prop";
+this.parentmethod=function(arg1)
+{
+return arg1+"parent method returns;"	
+}
+return 0;
+};
+
+function childclass()
+{
+parentclass.call(this);
+this.child_property1="hola child";
+this.childmethod=function(arg1)
+{
+return arg1+"child method returns;"	
+}
+};
+
+childclass.prototype=Object.create(parentclass.prototype);
+childclass.prototype.constructor=childclass;
+var cc= new childclass();
+console.log(cc.parentmethod(2) + cc.parent_propert1);
+</script>
+</head>
+<body>
+
+
+</body>
+</html>

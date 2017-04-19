@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="mainContainer">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="angular.min.js"></script>
+<script src="customServiceModule.js"></script>
+<script type="text/javascript">
+	var module = angular.module("mainContainer", ['customServiceModule']);
+
+	/* module.factory("loginService",
+			function(){
+		var messageCount=0;
+		return {
+			log:function(msg){
+				console.log(messageCount++);
+				console.log(msg);
+			}
+		}
+		
+	}); */
+	
+	module.controller("first-Controller", function($scope,loginService) {
+		$scope.log=function(msg){
+			loginService.log(msg);
+		}
+		});
+	
+	module.controller("second-Controller", function($scope,loginService) {
+		$scope.log=function(msg){
+			loginService.log(msg);
+		}
+		});
+	
+</script>
+</head>
+<body >
+<div ng-controller="first-Controller">
+First<input type="text" ng-model="msg">
+<button ng-click="log(msg)">msg</button>
+</div>
+
+<div ng-controller="second-Controller">
+Second<input type="text" ng-model="msg">
+<button ng-click="log(msg)">msg</button>
+</div>
+
+</body>
+</html>

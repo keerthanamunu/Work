@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+<script type="text/javascript">
+function Validation()
+{
+	alert("in login function");
+	var uname= document.getElementById('uname').value;
+	var pwd= document.getElementById('pwd').value;
+	console.log(uname);
+	console.log(pwd);
+	var JSONuser=localStorage.getItem(uname);
+	console.log(JSONuser);
+	if(JSONuser==null)
+		{
+		return false;
+		}
+	var userObj=JSON.parse(JSONuser);
+	console.log("use pwd: "+userObj.pwd);
+	if(pwd==userObj.pwd)
+		{
+		console.log("trueee");
+		return true;
+		}
+	else{
+		console.log("falsee");
+		return false;
+		}
+}
+
+</script>
+</head>
+<body>
+<form  action="Welcome1.html" onsubmit="return Validation()">
+
+  First name:
+  <input type="text" id="uname" name="uname"><br><br>
+  password:
+  <input type="password" id="pwd" name="pwd"><br><br>
+  
+ <input type="submit" value="submit">
+</body>
+</html>

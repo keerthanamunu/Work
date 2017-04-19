@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+<meta charset="ISO-8859-1">
+<title>Directives</title>
+<script src="angular.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script>
+var module = angular.module("demo",[]);
+module.controller("demoCtrl",function($scope)
+{
+
+});
+//return directive definition object
+//or return link function
+//template==object angular js expects us to write , configuration file
+ module.directive("helloWorld",function(){
+	return 
+	{
+		template: "HelloWorld"
+	}
+}); 
+</script>
+</head>
+<body >
+<div ng-controller="demoCtrl"></div>
+<hello-world></hello-world>
+
+</body>
+</html>

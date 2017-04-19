@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Single level</title>
+<script type="text/javascript">
+
+Account.prototype.Bank=function Bank(name)
+{
+	this.name=name;
+	console.log(name);
+}
+
+function Account(type,name)
+{
+	this.type=type;
+	console.log(type);
+}
+
+function SavingAccount(type,balance,name)
+{	
+	Account.call(this,type,name);
+	this.balance=balance;
+	console.log(balance);
+}
+
+SavingAccount.prototype=Object.create(Account.prototype);
+
+var sa= new SavingAccount('saving',234);
+console.log(sa.balance+" ");
+console.log(sa.Bank('ICICI'));
+
+
+</script>
+</head>
+<body>
+Single Level
+</body>
+</html>

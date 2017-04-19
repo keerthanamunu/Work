@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>student</title>
+<script type="text/javascript">
+Student.prototype.attendance=function()
+{
+	console.log('attendance func');
+};
+
+function Student(id,name,age)
+{
+	this.id=id;
+	this.name=name;
+	this.age=age;
+	this.homeWork=function()
+	{
+		console.log('homework func');
+	};
+};
+
+var r=new Student(101,'keerthana',26);
+var r1=new Student(102,'harshada',23);
+var r2=new Student(103,'Chandra',29);
+
+var school=[r,r1,r2];
+
+console.log('normal for');
+for (var i = 0; i < school.length; i++) 
+{
+	console.log('id :'+school[i].id+' name :'+school[i].name+' age : '+school[i].age);
+}
+
+
+console.log('foreach for');
+school.forEach(function(s,index)
+{
+	console.log('index '+index);
+	console.log('id :'+s.id+' name :'+s.name+' age : '+s.age);
+});
+
+
+//filter
+var filteredSchool=school.filter(function(a){
+	if(a.age>25)
+		return true;
+	else
+		return false;
+});
+
+console.log('filtered array ');
+filteredSchool.forEach(function(s,index)
+		{
+			console.log('index '+index);
+			console.log('id :'+s.id+' name :'+s.name+' age : '+s.age);
+		});
+		
+//map example		
+console.log('map array ');
+
+var updatedSchool=school.map(function(b){
+	if(b.age > 23){
+		b.status='senior';
+	}
+	return b;
+})
+
+updatedSchool.forEach(function(s,index)
+		{
+			console.log('index '+index);
+			console.log('id :'+s.id+' name :'+s.name+' age : '+s.age+ ' status :'+s.status);
+		});
+</script>
+</head>
+<body>
+student program
+</body>
+</html>

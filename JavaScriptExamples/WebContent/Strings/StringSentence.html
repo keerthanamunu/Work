@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var sentence = "this is the first sentence and this sentence is the second sentence.";
+	sentence = sentence.toLocaleLowerCase();
+	console.log(sentence);
+	var sentenceArray = sentence.split(" ");
+
+	var countArray = new Array(sentenceArray.length);
+	
+	for (var i = 0; i < sentenceArray.length; i++) 
+	{
+		
+		var elementsSentence = sentenceArray[i];
+		
+		var flag = 0;
+		
+		for (var j = 0; j < elementsSentence.length; j++) 
+		{
+			if (elementsSentence[j] == 'a' || elementsSentence[j] == 'e'
+					|| elementsSentence[j] == 'i' || elementsSentence[j] == 'o'
+					|| elementsSentence[j] == 'u') {
+				flag++;
+			}
+		}
+		countArray[i] = flag;
+
+	}
+	//console.log("count Array++++++++++++++++++++++++" + countArray[2]);
+	for (var g = 0; g < countArray.length; g++) {
+		var max = 0, index = 0;
+		var array_element = countArray[g];
+		//console.log("element :"+array_element+"index: "+g);	
+		if (array_element > max) {
+			max = array_element;
+			index = g;
+			//console.log("element :"+array_element+"index: "+g);	
+		}
+
+	}
+	console.log("element :" + sentenceArray[index] + " index :" + index);
+</script>
+</head>
+<body>
+
+</body>
+</html>

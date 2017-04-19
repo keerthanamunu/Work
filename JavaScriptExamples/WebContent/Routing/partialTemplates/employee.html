@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+</head>
+<body>
+<div class="col-xs-3">
+    <a ng-click="selectDepartmentHandler()"
+       class="btn btn-block btn-default btn-lg">Home</a>
+    <a ng-repeat="e in employees  | orderBy:'department' | unique:'department'"
+       ng-click="selectDepartmentHandler (e.department)"
+       class=" btn btn-block btn-default btn-lg"
+       ng-class="getDepartmentClass(e.department)">
+        {{e.department}}
+    </a>
+</div>
+
+<div class="col-xs-8">
+
+    <table class="table table-striped table-bordered table-condensed">
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>Department</td>
+            <td class="text-right">Salary</td>
+            <td class="text-right">Age</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="e in employees | filter:departmentFilterFn">
+            <td><a href="#employee/{{e.name}}">{{e.name}}</a></td>
+            <td>{{e.department}}</td>
+            <td class="text-right">{{e.salary | currency}}</td>
+            <td class="text-right">{{e.age}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

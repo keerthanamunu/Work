@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app=>
+<head>
+<meta charset="ISO-8859-1">
+<title>Form Validation</title>
+<script src="angular.min.js"></script>
+<style type="text/css">
+input.ng-invalid{
+border:1px solid red;}
+</style>
+</head>
+<body>
+<form name="myform">
+<input type="email" name="email" ng-model="user.email" required>
+<span ng-show="myform.email.$dirty && myform.email.$error.required">Required</span>
+<span ng-show="myform.email.$dirty && myform.email.$error.email">Required correct format</span>
+
+<input type="password" name="password" ng-model="user.password" ng-minlength="6" required>
+<span ng-show="myform.password.$dirty && myform.password.$error.required">Required</span>
+<span ng-hide="myform.password.$dirty && myform.password.$error.minlength">enter alteast 6 </span>
+</form>
+</body>
+</html>

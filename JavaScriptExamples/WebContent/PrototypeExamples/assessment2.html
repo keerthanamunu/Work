@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Single level</title>
+<script type="text/javascript">
+Student.prototype.midschool =function midschoolmethod()
+{
+	console.log("Student "+this.name+" in mid school method");
+	return '';
+}
+
+function Student(name,age)
+{
+	this.name=name;
+	this.age=age;
+}
+
+var s1= new Student('ramesh',23);
+var s2= new Student('suresh',24);
+var s3= new Student('animesh',23);
+
+console.log(s1.midschool());
+console.log(s2.midschool());
+console.log(s3.midschool());
+</script>
+</head>
+<body>
+Single Level
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="testCtrlModule">
+<head>
+<meta charset="ISO-8859-1">
+<title>Service Angular</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+
+var module = angular.module("testCtrlModule",[]);
+//this is the service method here we are using the this keyword
+module.service("nameService",function()
+{			this.name="keerthana";
+			this.setName=function(name)
+			{
+				console.log("inside setName:"+name);
+				this.name=name;
+			};
+			this.getName=function()
+			{
+				console.log("inside getter: "+this.name);
+				return this.name;
+			};
+	
+});
+	
+	
+module.controller("testCtrl",function($scope,nameService)
+{
+		var data="this is from controller";
+		$scope.names=["keer","harshad","ramesh","suresh"];
+		
+		$scope.somefunction = function()
+		{
+			console.log(nameService.getName());
+			nameService.setName($scope.name);
+			console.log(nameService.getName());
+		}
+		
+		
+});
+
+module.controller("testCtrl1",function($scope,nameService){
+	$scope.nameService=nameService;
+	console.log($scope);
+	});
+
+</script>
+</head>
+<body>
+<div  ng-controller="testCtrl">
+<select ng-options="name for name in names" ng-model="name"></select>
+<input type="button" ng-click="somefunction()" value="click">
+</div>
+
+<div ng-controller="testCtrl1">	
+{{nameService.getName()}}</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+/* 
+//object properties
+ var customerObj ={
+		 id:1001,
+		name:'keerthana',
+		age:50,
+		attendenceMarking:function(){
+			console.log('attendence marking'+this.id);
+		}
+};
+
+customerObj.address="india";
+//to access the function in the property
+customerObj.attendenceMarking();
+console.log(customerObj);
+//to delete an object
+delete customerObj.age;
+console.log(customerObj['address']); 
+console.log(customerObj);
+console.log(customerObj['age']); 
+ */
+
+/*  
+//constructor function
+function Employee(empId,ename,eage)
+{
+	this.empId=empId;
+	this.ename=ename;
+	this.eage=eage;
+	this.attendenceMarking=function(){
+		console.log('attendence marking'+this.empId);}
+}
+var rameshObj = new Employee(123,'ramesh',23);
+var sureshObj = new Employee(234,'suresh',34);
+console.log(rameshObj);
+console.log(sureshObj);
+rameshObj.attendenceMarking(); 
+ */
+
+
+function identify() {
+    return this.name.toUpperCase();
+}
+
+function speak() {
+    var greeting = "Hello, I'm " + identify.call( this );
+    console.log( greeting );
+}
+
+var me = {
+    name: "Kyle"
+};
+
+var you = {
+    name: "Reader"
+};
+//document.write("Helooooo");
+console.log(identify.call(me));
+//console.log(me.identify());
+var a='hello';
+var b =a;
+
+console.log(typeof b);
+console.log(b); 
+
+var timestamp = new Date().getTime();
+console.log(timestamp);
+ */
+</script>
+</head>
+<body>
+hiii
+</body>
+</html>

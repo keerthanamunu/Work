@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+function a(b,c,x,z){}
+console.log(typeof function a(b,c,x,z){});
+console.log(a.length);
+console.log(typeof typeof typeof 42);
+var x;
+//y;
+console.log(typeof x);
+console.log(typeof y);
+
+var arr=[1,2,[3,1]];
+console.log(arr.length);
+console.log(arr[2][1]);
+//delete arr[1];
+arr["foobar"]=23;
+arr["10"]=12;
+console.log(arr);
+console.log(arr.length);
+
+function foo() {
+	var arr1 = Array.prototype.slice.call( arguments );
+	arr1.push( "bam" );
+	console.log( arr1);
+}
+
+foo( "bar", "baz" );
+
+var s="keerthana";
+//var t=Array.prototype.reverse.call(s); this doean't work because strings are immutable
+//console.log(s.reverse);
+var t = s.split("").reverse().join("");
+console.log(t);
+console.log(0.1+ 0.2 === 0.3);
+
+function numbersCloseEnoughToEqual(n1,n2) {
+	return Math.abs( n1 - n2 ) < Number.EPSILON;
+}
+
+var a = 0.1 + 0.2;
+var b = 0.3;
+
+console.log(numbersCloseEnoughToEqual( a, b ));					// true
+console.log(numbersCloseEnoughToEqual( 0.0000001, 0.0000002 ));
+
+var x=2/"foo";
+var y="xyz";
+
+console.log(isNaN(x));
+console.log(isNaN(y));
+
+var a = new String( "abc" );
+
+typeof a; // "object" ... not "String"
+
+console.log(a instanceof String); // true
+</script>
+</head>
+<body>
+<h1>hellooo</h1>
+</body>
+</html>

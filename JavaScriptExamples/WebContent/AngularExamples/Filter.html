@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="filterExample">
+<head>
+<meta charset="ISO-8859-1">
+<title>Filter</title>
+<script src="angular.min.js"></script>
+<script src="angular-filter.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script>
+var module = angular.module("filterExample",['angular.filter']);
+module.controller("demoCtrl",function($scope)
+{
+	
+	$scope.employees=[
+		
+		{
+		"eId":123,
+		"ename":"chandra",
+		"dept":"software",
+		"age":28,
+		"salary":4000
+		},
+	
+		{
+		"eId":113,
+		"ename":"bobby",
+		"dept":"accounts",
+		"age":34,
+		"salary":2000
+		},
+	
+		{"eId":193,
+		"ename":"sanju",
+		"dept":"accounts",
+		"age":20,
+		"salary":5000},
+		
+		{"eId":133,
+		"ename":"abhinay",
+		"dept":"software",
+		"age":21,
+		"salary":1000},
+		
+		{ 	"eId":321,
+			"ename":"keeru",
+			"dept":"accounts",
+			"age":23,
+			"salary":4000
+			}
+];
+	
+	$scope.getDate=function()
+	{
+		return new Date();
+	};
+	
+	$scope.deptFilterFn=function(e1)
+	{
+		console.log(e1);
+		return e1.dept=='software';
+	};
+	
+	
+	//
+	$scope.selectedDepartment=null;
+	$scope.selectedDepartmentHandler=function(dept)
+	{
+		console.log("selected dept "+dept);
+		$scope.selectedDepartment=dept;
+	};
+	
+	$scope.filterBasedonDepartment=function(e){
+		
+		 if(e.dept==$scope.selectedDepartment||$scope.selectedDepartment==" "||$scope.selectedDepartment==null)
+			 {
+			 return true;
+			 }
+	};
+	
+	
+	$scope.numbers=[12,43,32,45,61,78,90];
+	console.log($scope.num);
+	$scope.numfil=function(n)
+	{
+		if(n<$scope.num || $scope.num==null)
+			{
+			return true;
+			}
+	};
+	
+	
+});
+
+//filter:{dept:'software'}
+//limitTo:2
+//filter:deptFilterFn
+//| orderBy:'dept' | unique:'dept'|
+//|filter:deptFilterFn 
+
+</script>
+</head>
+<body ng-controller="demoCtrl">
+<div>
+
+<a class="btn btn-block btn-success btn-lg" ng-click="selectedDepartmentHandler()">HOME</a>
+<a class="btn btn-block btn-default btn-lg"  ng-click="selectedDepartmentHandler(e.dept)" ng-repeat="e in employees | orderBy:'dept' | unique:'dept' ">{{e.dept}}</a>
+
+</div>
+
+<table border="2" class="table table-striped">
+<tr><td>Id</td><td>Name</td><td>salary</td><td>Age</td><td>Department</td><td>Date</td></tr>
+<tr ng-repeat="e in employees|filter:filterBasedonDepartment">
+<td>{{e.eId}}</td>
+<td>{{e.ename | uppercase}}</td>
+<td>{{e.salary |currency:'Rs. '}}</td>
+<td>{{e.age}}</td>
+<td>{{e.dept}}</td>
+<td>{{ getDate()|date:"MM-dd-yyyy"}}</td>
+</tr>
+</table>
+
+<label>Number</label><input type="text" ng-model="num">
+<ul>
+<li ng-repeat="v in numbers | filter:numfil">{{v}}</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+var vehicle=function(vehicleName)
+{
+	this.vehicleName=vehicleName;
+};
+
+vehicle.prototype.printVehicle=function()
+{
+	console.log("in base class :"+this.vehicleName+" ")
+};
+
+var Car=function(vehicleName,carName)
+{
+	vehicle.call(this,vehicleName);
+	this.carName=carName;
+};
+
+Car.prototype=Object.create(vehicle.prototype);
+//console.log(Car.prototype instanceof vehicle.prototype);
+Car.prototype.constructor=Car;
+
+var c=new Car('vehicle_car','santroo');
+console.log(c.printVehicle());
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

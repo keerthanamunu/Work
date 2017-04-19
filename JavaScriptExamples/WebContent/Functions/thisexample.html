@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+/* 
+var a=10;
+function demo()
+{
+	console.log(this); //window object or global
+}
+
+var obj={
+	display:function(){
+		console.log(this);//current object
+	}	
+};
+ //var obj1=this.obj;
+ //console.log(obj1);
+demo();
+obj.display();
+
+console.log(this);//global 
+console.log(this==window);
+ */
+ 
+
+var a=10;
+var b=20;
+function test(c,d)
+{	//c and d will be local to this method
+	//here c is not part of window or this so it will be undefined
+	console.log(this.a);
+	console.log(this.b);
+	//console.log(this.c);
+	//console.log(this.d); 
+	console.log(c);
+	console.log(d); 
+}
+
+//test(30,40);
+console.log(this);
+
+var obj={
+		a:50,
+		b:60,
+		fun:function()
+		{
+			var c=34;
+			//var d=35;
+			console.log(this==window);
+		}
+}
+//we change the context of this using call method
+//test.call(obj,12,13);
+//test.apply(obj,[12,13]);
+//obj.fun();
+test=test.bind(obj);
+test(21,31);
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

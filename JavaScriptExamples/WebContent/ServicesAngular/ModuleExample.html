@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<<script src="angular.min.js"></script>
+<script src="service.js"></script>
+<!-- <script src="controller.js"></script> -->
+<script>
+
+var appModule = angular.module("demoApp", ['serviceModule']);
+appModule.controller("hiController",function($scope,greetingService,$http){
+	
+	$scope.name='ramesh';
+	$scope.msg=greetingService.sayHi();
+	$scope.msg1=greetingService.sayHellos();
+	
+	$scope.somefun=function()
+	{
+		var promise=greetingService.getStudentDetails()
+	//$scope.helloContent=greetingService.sayHellos();
+	//callback -- by the framework	
+	//promise.then(success,failure);
+		var empFunc =function(response)
+		{
+			$scope.employee=response.data;
+		} ;
+		
+		var empFail=function(response)
+		{
+			//$scope.employee=response.data;
+			console.log(response.status);
+		} ;
+		
+		promise.then(empFunc,empFail); 
+		
+	}
+});
+
+</script>
+</head>
+<body ng-app="demoApp">
+<div ng-controller="hiController">
+{{name}}<br>
+{{msg}}<br>
+<button ng-click="somefun()">{{msg1}}</button>
+<br>
+<table> 
+<tr ng-repeat="e in employee">
+<td>{{e.name}}</td>
+<td>{{e.age}}</td>
+<td>{{e.id}}</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

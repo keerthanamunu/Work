@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+ //1st example
+var a1=10;
+var b= 'keerthana';
+var c= undefined;
+var d=null;
+var e=a1;
+console.log("hi hello world java")
+console.log(a+" "+typeof b+" "+ typeof d);
+//console.log( a1 instanceof e);  
+
+ 
+ //example2
+console.log(a);
+var a=20;
+console.log(a);
+var a=30;
+console.log(a);
+var a=40;
+console.log(a); 
+
+//example3
+var a=1;
+if(a==1){
+	var b =23;
+}
+for(var c=0;c<3;c++)
+	{
+	
+	}
+	
+	function xyz()
+	{
+		d=12;
+	}
+	
+console.log(a);
+console.log(b);
+console.log(c);
+//d's scope id limited to function
+//console.log(d); 
+
+function fun(a,b)
+{
+	console.log("heloooo function");
+	return a+b;
+}
+
+function fun()
+{
+	console.log("heloooo function 1");
+}
+
+var x=fun(2,3);
+console.log(x);
+
+function add()
+{
+	var result=0;
+	for(var i=0;i<arguments.length;i++)
+		{
+		result=result+ arguments[i];
+		}
+	return result;
+	}
+
+console.log(add(6,1,2,3));
+console.log(add('java','ant'));
+ 
+function fun(a,b,c)
+ {
+	console.log(a);
+	 console.log(b);
+	 console.log(c); 
+	 console.log("helloo");
+ }
+  
+ var b=fun;
+ b(4,5,6);
+ display(b);
+ 
+ function display(fun)
+ {
+	 fun();
+ }  
+ 
+ var customerObj ={
+		 "id":1001,
+ 		"name":'keerthana',
+ 		"age":50
+ };
+ console.log(customerObj)
+</script>
+</head>
+<body>
+<h1>Hellooo</h1>
+</body>
+</html>

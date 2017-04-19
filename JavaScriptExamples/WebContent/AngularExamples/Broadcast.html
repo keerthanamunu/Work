@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="testCtrlModule">
+<head>
+<meta charset="ISO-8859-1">
+<title>sample Angular</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+var module = angular.module("testCtrlModule",[]);
+module.controller("testCtrl",function($scope,$rootScope){
+		$scope.somefunction = function()
+		{
+			var obj={name:$scope.name};
+			$rootScope.$broadcast("passingEvent",obj);
+		}
+		
+		$scope.names=["keer","harshad","ramesh","suresh"];
+});
+
+module.controller("testCtrl1",function($scope){
+	//$scope.names=["keer","harshad","ramesh","suresh"];
+	$scope.$on("passingEvent",function(event,args){
+		console.log(event);
+		$scope.name1=args.name;
+	})
+});
+</script>
+</head>
+<body>
+<div  ng-controller="testCtrl">
+<select ng-options="name for name in names" ng-model="name"></select>
+<input type="button" ng-click="somefunction()" value="click">
+</div>
+
+<div ng-controller="testCtrl1">	
+{{name1}}</div>
+</body>
+</html>

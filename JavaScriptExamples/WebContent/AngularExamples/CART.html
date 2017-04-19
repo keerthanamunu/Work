@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html ng-app="filterExample">
+<head>
+<meta charset="ISO-8859-1">
+<title>Filter</title>
+<script src="angular.min.js"></script>
+<script src="ServiceCart.js"></script>
+<script src="angular-filter.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script>
+	var module = angular.module("filterExample", [ 'angular.filter',
+			'ServiceCart' ]);
+	module.controller("demoCtrl", function($scope, AddService) {
+
+		$scope.Products = [
+
+		{
+			"Id" : 1,
+			"name" : "Teddy Bear",
+			"category" : "Toys",
+			"price" : 800
+		},
+
+		{
+			"Id" : 2,
+			"name" : "Harry Potter",
+			"category" : "Books",
+			"price" : 2500
+		},
+
+		{
+			"Id" : 3,
+			"name" : "microwave",
+			"category" : "Kitchen",
+			"price" : 4000
+		},
+
+		{
+			"Id" : 4,
+			"name" : "dishWasher",
+			"category" : "Kitchen",
+			"price" : 14000
+		},
+
+		{
+			"Id" : 5,
+			"name" : "Samsung Mobile",
+			"category" : "Electronics",
+			"price" : 9000
+		},
+
+		{
+			"Id" : 6,
+			"name" : "TV sony",
+			"category" : "Electronics",
+			"price" : 50000
+		} ];
+
+		$scope.selectedCategory = null;
+		$scope.selectedCategoryHandler = function(c) {
+			console.log("selected category " + c);
+			$scope.selectedCategory = c;
+		};
+
+		$scope.filterBasedonCategory = function(e) {
+
+			if (e.category == $scope.selectedCategory
+					|| $scope.selectedCategory == " "
+					|| $scope.selectedCategory == null) {
+				return true;
+			}
+		};
+
+		//function add to Cart
+		$scope.addToCart = function(id) {
+			var prodSelected = {};
+			console.log(id);
+			angular.forEach($scope.Products, function(p) {
+				if (p.Id == id) {
+					console.log("retrievd");
+					prodSelected.Id = p.Id;
+					prodSelected.name = p.name;
+					prodSelected.category = p.category;
+					prodSelected.price = p.price;
+				}
+			});
+			AddService.addProduct(prodSelected);
+		};
+
+		$scope.deleteFromCart = function(id) {
+			AddService.deleteProduct(id);
+		};
+		
+		//products from cart
+		$scope.ShowCart = function() {
+			$scope.CartProducts = AddService.getProducts();
+		};
+
+		$scope.total = function(){
+				    
+			    return AddService.totalAmount();
+		};
+			
+			
+
+	});
+</script>
+</head>
+<body ng-controller="demoCtrl">
+	
+	<div>
+		<h1>SHOPPING CART</h1>
+	</div>
+
+	<div class="col-xs-3">
+		<a class="btn btn-block btn-success btn-lg"
+			ng-click="selectedCategoryHandler()">HOME</a> <a
+			class="btn btn-block btn-info btn-lg"
+			ng-click="selectedCategoryHandler(p.category)"
+			ng-repeat="p in Products | orderBy:'category' | unique:'category' ">{{p.category}}</a>
+	</div>
+
+	<div class="col-xs-7 container-paragraph">
+
+		<table border="2" class="table">
+			<tr class="danger">
+				<td>Id</td>
+				<td>Product Name</td>
+				<td>Category</td>
+				<td>Price</td>
+				<td>Cart</td>
+			</tr>
+			<tr ng-repeat="p in Products|filter:filterBasedonCategory">
+				<td>{{p.Id}}</td>
+				<td>{{p.name | uppercase}}</td>
+				<td>{{p.category}}</td>
+				<td>{{p.price |currency:'Rs. '}}</td>
+				<td class="btn btn-block btn-default btn-lg"
+					ng-click="addToCart(p.Id)">Add to Cart</td>
+			</tr>
+		</table>
+
+		
+		<button class="btn btn-block btn-warning btn-lg" ng-click="ShowCart()">Checkout</button>
+		<br/><br/>
+		<div ng-show="CartProducts!=null">
+			<table ng-show="CartProducts!=null" border="2" class="table">
+				<tr class="info">
+					<td>Id</td>
+					<td>Product Name</td>
+					<td>Category</td>
+					<td>Price</td>
+					<td>Delete from cart</td>
+				</tr>
+				<tr ng-repeat="p in CartProducts">
+					<td>{{p.Id}}</td>
+					<td>{{p.name | uppercase}}</td>
+					<td>{{p.category}}</td>
+					<td>{{p.price |currency:'Rs. '}}</td>
+					<td class="btn btn-block btn-default btn-lg"
+						ng-click="deleteFromCart(p.Id)">Delete from Cart</td>
+				</tr>
+				<tr>
+					<td colspan="3">Total Amount</td>
+					<td colspan="2">{{total() |currency:'Rs. '}}</td>
+				</tr>
+			</table>
+			
+		</div>
+	</div>
+
+</body>
+</html>

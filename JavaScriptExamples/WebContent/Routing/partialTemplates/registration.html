@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form name="myForm" novalidate>
+    <div class="well">
+        <div class="form-group">
+            <label>Text:</label>
+            <input name="name" class="form-control" ng-model="loginForm.name"
+                   ng-required="requireValue" ng-minlength="3"
+                   ng-maxlength="10" ng-pattern="matchNamePattern">
+        </div>
+
+        <div class="form-group">
+            <label>phone number:</label>
+            <input name="phoneNo" class="form-control" ng-model="loginForm.phoneNo"
+                   ng-required="requireValue" ng-minlength="10"
+                   ng-maxlength="11" ng-pattern="matchNumberPattern">
+        </div>
+
+        <div ng-show="myForm.name.$error.required && !myForm.sample.$pristine" class="help-block" class="alert-danger"> name is manidatory</div>
+        <div ng-show="myForm.name.$error.minlength"> Please Enter atleast 3 or more</div>
+        <div ng-show="myForm.name.$error.maxlength"> Please Enter less than 10</div>
+        <div ng-show="myForm.name.$error.pattern"> please enter proper value</div>
+
+        <div ng-show="myForm.phoneNo.$error.required && !myForm.sample.$pristine" class="help-block" class="alert-danger"> Phone number is manidatory</div>
+        <div ng-show="myForm.phoneNo.$error.minlength"> Please Enter atleast 10 or more</div>
+        <div ng-show="myForm.phoneNo.$error.maxlength"> Please Enter less than 12</div>
+        <div ng-show="myForm.phoneNo.$error.pattern"> please enter proper value</div>
+    </div>
+    <input type="button" ng-click="clicking()"
+           ng-disabled="myForm.name.$invalid||myForm.phoneNo.$invalid"
+           ng-class="myForm.name.$invalid||myForm.phoneNo.$invalid? 'alert-danger':'alert-success' "
+           value="submit">
+</form>
+</body>
+</html>

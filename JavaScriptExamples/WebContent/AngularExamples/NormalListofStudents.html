@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="onewayBinding">
+<head>
+<meta charset="ISO-8859-1">
+<title>sample Angular</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+
+var module = angular.module("onewayBinding",[]);
+module.controller("demoCtrl",function($scope)
+{
+	$scope.employees=[
+		
+			{
+			"eId":123,
+			"ename":"chandra",
+			"salary":2000
+			},
+		
+			{
+			"eId":123,
+			"ename":"bobby",
+			"salary":3000
+			},
+		
+			{"eId":123,
+			"ename":"sanju",
+			"salary":4000},
+			
+			{"eId":123,
+			"ename":"abhinay",
+			"salary":5000}
+	];
+	
+	$scope.somefunction=function()
+	{
+		console.log($scope.salary);
+		var filetredEmp=$scope.employees.filter(function(e){
+			if(e.salary > $scope.salary)
+			return true;
+			else
+			return false;
+		})
+		
+		$scope.employees=filetredEmp;
+	}
+	
+});
+</script>
+</head>
+<body ng-controller="demoCtrl">
+<table border="2">
+<tr><td>Id</td><td>Name</td><td>salary</td>
+<tr ng-repeat="e in employees| orderBy:'ename'">
+<td>{{e.eId}}</td>
+<td>{{e.ename}}</td>
+<td>{{e.salary}}</td>
+</tr>
+</table>
+<div><br><br>
+salary <input type="text" ng-model="salary">
+<input type="button" value="ng-click" ng-click="somefunction()">
+</div>
+</body>
+</html>

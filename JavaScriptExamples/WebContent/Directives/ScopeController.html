@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="angular.min.js"></script>
+<script>
+var module = angular.module("demo",[]);
+module.controller("demoCtrl",function($scope)
+{
+	console.log("inside the controller");
+	$scope.value=' value is ramesh';
+});
+
+module.directive("attributeDir",function(){
+	return {
+		restrict:"A",
+		//template: "name: {{name}}",
+		link:function(scope,element,attr){
+			console.log('inside the link func');
+			console.log(scope);
+			console.log(attr);
+			console.log(attr['attributeDir']);
+			element.html("attribute value: "+attr['attributeDir']+"<br> scope value: "+scope.value);
+			scope.value="dhinesh";
+			console.log('end of the link');
+		},
+		controller:function($scope){
+			console.log("inside the directive controller");
+			console.log($scope);
+		}
+	}
+});
+</script>
+</head>
+<body ng-controller="demoCtrl">
+value from the controller====== {{value}}
+<div attribute-Dir="hi from attribute"></div>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Sentence Example</title>
+<script type="text/javascript">
+
+var givenSentence="this is the first sentence and sentence is the second sentence";
+givenSentence = givenSentence.toLocaleLowerCase();
+var splitSentence = givenSentence.split(" ");
+
+console.log(splitSentence);
+
+var x= splitSentence.length;
+var countarray = new Array(x);
+
+
+for (var i = 0; i < x; i++) 
+{
+	var tempvariable=splitSentence[i];
+	//console.log('variable in for(i) loop:'+tempvariable);
+	var count=0;
+	
+	for(var j=0;j<tempvariable.length;j++)
+		{
+			console.log(tempvariable[j]);
+			if(tempvariable[i]=='a'||tempvariable[i]=='i'||tempvariable[i]=='e'||tempvariable[i]=='o'||tempvariable[i]=='u')
+			{
+			console.log(tempvariable+' '+'contains vowel');
+			count++;
+			}
+		}
+	
+		countarray[i]=count;
+}
+
+console.log(countarray);
+ 
+
+</script>
+</head>
+<body>string sentence Example
+</body>
+</html>

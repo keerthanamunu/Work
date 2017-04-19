@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="UserRegistration">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+<script src="angular.min.js"></script>
+<script src="insertService.js"></script>
+<script>
+
+//constructor object which returns User instance
+function User(uname,pwd,cpwd,gender,job,dob,salary)
+{
+	alert("user function");
+	this.uname=uname;
+	this.pwd=pwd;
+	this.cpwd=cpwd;
+	this.gender=gender;
+	this.job=job;
+	this.dob=dob;
+	this.salary=salary;
+} 
+
+var module=angular.module("UserRegistration",['InsertRegistration']);
+module.controller("regis",function($scope,insertService)
+{
+		
+	$scope.Register=function()
+	{
+		
+	alert('retrieving the form values');
+	var uname = $scope.uname;
+	var pwd = $scope.pwd;
+	var cpwd=$scope.cpwd;
+	var job = $scope.job;
+	var gender = $scope.gender;
+	var dob = $scope.dob;
+	var salary = $scope.salary;
+	
+	var userObj= new User(uname,pwd,cpwd,gender,job,dob,salary);
+	//using insertService to sset the data
+	insertService.insertEmp(userObj);
+	};
+
+});
+</script>
+
+
+</head>
+<body>
+
+	<h1>USER REGISTRATION</h1>
+	<div ng-controller="regis">
+
+		First name: <input type="text" ng-model="uname" name="uname"><br>
+		<br> password: <input type="password" ng-model="pwd" name="pwd"><br>
+		<br> confirm pwd: <input type="password" ng-model="cpwd" name="cpwd"><br>
+		<br> Job status <select ng-model="job">
+			<option value="student">student</option>
+			<option value="Masters">Masters</option>
+			<option value="Job">Job</option>
+		</select> <br>
+		<br> Gender <br>
+		<div>
+			<input type="radio" ng-model="gender" value="male"> Male<br>
+			<input type="radio" ng-model="gender" value="female"> Female<br>
+			<br> DOB <input ng-model='dob' type="date"> <br>
+			<br> Salary: <input type="text" ng-model="salary" name="salary"><br>
+			
+			<br> <input type="button" value="submit" ng-click="Register()">
+				<!-- <input type="reset" value="reset"> -->
+
+		</div>
+</body>
+</html>

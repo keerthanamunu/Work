@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="main">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+<script src="angular.min.js"></script>
+<script>
+
+
+var module=angular.module("main",[]);
+module.controller("demo",function($scope,$timeout,$q)
+{
+	function deferredTimer(success){
+		var deferred= $q.defer();
+		
+		$timeout(function(){
+			if(success){
+				deferred.resolve({message:"this is great"});
+			}
+			else
+				{
+				deferred.reject({message:"this is bad"});
+				}
+		},1000);
+		
+		return deferred.promise;
+	}	
+	
+	$scope.check=function(boo){
+		deferredTimer(boo).then(
+			function(response){
+				console.log(response);
+			}	, 
+			function(error){
+				console.log(error);
+			}
+		)
+	}
+});
+module.controller("demo1",function($scope,$http){
+	
+	$http.get("http://localhost:8080/MyWebServices/rest/studentService/studentxml").then(function(response){
+		console.log(response.data);
+		$scope.msg=response.data;
+	});
+});
+
+</script>
+
+
+</head>
+<body>
+
+<br><br><br>
+	
+	<div ng-controller="demo">
+	
+	<button ng-click="check(true)">fullfillPromise</button>	
+	<button ng-click="check()">Break Promise</button>	
+	
+	</div>
+	
+	<div ng-controller="demo1">
+	<table class="table">
+	<tr ng-repeat="m in msg">
+	<td>{{m.age}}</td>
+	</tr>
+	</table>
+	
+	</div>
+	
+	<br><br><br>
+	
+	
+	
+	
+	
+</body>
+</html>

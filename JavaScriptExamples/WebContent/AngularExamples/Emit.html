@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="testCtrlModule">
+<head>
+<meta charset="ISO-8859-1">
+<title>sample Angular</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+var module = angular.module("testCtrlModule",[]);
+module.controller("child",function($scope){
+	
+	$scope.names=["keer","harshad","ramesh","suresh"];
+		$scope.somefunction = function()
+		{
+			console.log("hello in func");
+			var obj={name:$scope.name};
+			$scope.$emit("passingEvent",obj);
+		}
+		
+		
+});
+
+module.controller("parent",function($scope){
+	$scope.$on("passingEvent",function(event,args){
+		//console.log(event);
+		console.log("catched");
+		$scope.name11 = args["name"];
+	});
+});
+</script>
+</head>
+<body>
+<div  ng-controller="parent">
+<div ng-controller="child">	
+<select ng-options="name for name in names" ng-model="name"></select>
+<input type="button" ng-click="somefunction()" value="click">
+{{name}}
+<br><br>
+</div>
+other div tag : {{name11|| "No data traced"}}
+</div>
+</body>
+</html>

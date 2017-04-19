@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="User">
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome1</title>
+<script src="angular.min.js"></script>
+<script src="GetEmpDetails.js"></script>
+<script>
+var module=angular.module("User",['GetEmpDetails']);
+module.controller("demoCtrl",function($scope,EmpDetails)
+{
+	var details = EmpDetails.getEmp();
+	$scope.tableDetails=details;
+	
+	$scope.somefunction=function()
+	{
+		alert("in salary functionnn");
+		console.log($scope.salary);
+		//salary logic
+		var newList=$scope.tableDetails.filter(function(e){
+			if(e.salary > $scope.salary)
+			return true;
+			else
+			return false;
+		})
+		
+		$scope.tableDetails=newList;
+	}
+	
+});
+
+</script>
+</head>
+<body ng-controller="demoCtrl">
+<table border="2">
+<h3>USER DETAILS</h3>
+<tr><td>Name</td><td>Pwd</td><td>gender</td><td>DOB</td><td>Salary</td></tr>
+<tr ng-repeat="e in tableDetails">
+<td>{{e.uname}}</td>
+<td>{{e.pwd}}</td>
+<td>{{e.gender}}</td>
+<td>{{e.dob}}</td>
+<td>{{e.salary}}</td>
+</tr>
+</table>
+<div><br><br>
+Input the salary : <input type="text" ng-model="salary">
+<input type="button" value="ng-click" ng-click="somefunction()">
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script>
+var x= function(j){
+	
+	this.i=0;
+	this.j=j;
+};
+
+var x1= new x(1);
+var x2=new x(2);
+
+x.prototype.getj=function()
+{
+	return this.j;
+};
+
+console.log(x1.getj());
+console.log(x2.getj());
+ 
+</script>
+</head>
+<body>
+
+</body>
+</html>

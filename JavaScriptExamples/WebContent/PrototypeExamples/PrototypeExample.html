@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+Employee.prototype.attendance = function attendanceMarking()
+{
+	console.log(this.name+"attendanace markin");
+	return this.name;
+}
+
+function Employee(name,age){
+	this.name=name;
+	this.age=age;
+	
+}
+
+var ramesh= new Employee('ramesh',23);
+var suresh=new Employee('suresh',25);
+
+console.log(ramesh.__proto__);
+console.log(Employee.prototype.attendance);
+console.log(ramesh.attendance());
+console.log(ramesh.__proto__==Employee.prototype);
+
+</script>
+</head>
+<body>
+
+</body>
+</html>

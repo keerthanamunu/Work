@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="onewayBinding">
+<head>
+<meta charset="ISO-8859-1">
+<title>sample Angular</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+
+var module = angular.module("onewayBinding",[]);
+module.controller("demoCtrl",function($scope,$timeout)
+{
+	
+	var value1=10;
+	$scope.value2=20;
+	$timeout(function(){
+		$scope.value2+=40;
+	},2000);
+	
+	
+});
+</script>
+</head>
+<body ng-controller="demoCtrl">
+	<div>{{this}}</div>
+	<div>value1 is {{value1 || "no value found as it is local to the function"}}</div>
+	<div>value2 is {{value2|currency}} and we can print only scope variables on screen</div>
+</body>
+</html>

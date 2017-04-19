@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="simplemodule">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../angular.js"></script>
+    <script>
+        var module=angular.module("simplemodule",[])
+ // jar
+ // lib
+ // post
+        //
+  
+
+        module.controller("saveController" ,function($scope,$http) {
+            $scope.submitForm=function(){
+  console.log($scope.message) 
+                var promise=$http.post("http://localhost:8080/MyWebServices/rest/studentWeb/insertStudent",$scope.message);
+                promise.then(success,error);
+                
+                function error(data, status, headers, config) {
+                    alert( "error: " + status);
+                }
+
+                function success(data, status, headers, config) {
+                    $scope.message = data;
+                }
+            }
+        });
+    </script>
+</head>
+<body ng-controller="saveController">
+    <form action="postProgram.html" method="post" ng-submit="submitForm()">
+ First Name <input type="text" id="name" name="name" ng-model="message.name">
+ Author<input type="text" id="author" name="author" ng-model="message.author">
+    <input type="submit">
+
+
+</form>
+</body>
+</html>

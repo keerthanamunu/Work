@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>FORM</title>
+<link rel="stylesheet" href="style1.css">
+</head>
+<body>
+	<h1>Registration Form</h1>
+	<form action="">
+		<fieldset><legend>Personal Information</legend> 
+			<li><label for="name">Name:</label>
+			<input type="text" id="name" name="name"
+				placeholder="between 2 and 50 char" autofocus required
+				title="enter correect format" pattern="[a-g]{3,20}"></li>
+				
+			<li><label for="pwd">Password:</label> <input type="password"
+				id="pwd" name="pwd" required></li>
+				
+			<li><label for="contact">Contact:</label> <input type="tel"
+				id="ph" name="ph" placeholder="xxx-xxx-xxxx"></li>
+				
+			<li><label for="dob">DOB:</label> <input type="date" id="dob"></li>
+			<li><label for="email">email</label> <input type="email"
+				id="email" title="@gmail.com"></li>
+				
+			<li><label for="hobby">Hobbies</label>
+			<li>
+			<li><input type="checkbox" name="h" value="tv">TV</li>
+			<li><input type="checkbox" name="h" value="tennis">tennis</li>
+			<li><input type="checkbox" name="h" value="baseball">Baseball</li>
+			<li>
+			
+			<datalist id="mlist">
+					<option>science</option>
+					<option>math</option>
+					<option>physics</option>
+				</datalist> <input type="text" list="mlist" name="mmmm"></li>
+			<li><label for="color">Color</label> <input type="color" id="c">
+			</li>
+		</fieldset>
+		<input type="submit" value="submit">
+	</form>
+</body>
+</html>

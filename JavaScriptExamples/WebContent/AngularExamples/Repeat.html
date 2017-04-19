@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="showapp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+.odd { background-color : purple}
+.even { background-color : orange}
+</style> 
+<script src="angular.min.js"></script>
+<script>
+var app=angular.module("showapp",[]);
+app.controller("myCtrl",function($scope){
+	$scope.count=0;
+	$scope.showme=true;
+	$scope.menu=function()
+	{
+		$scope.showme=!$scope.showme;
+	};
+	
+	$scope.items=['ramesh','suresh','dhinesh','ramya'];
+	$scope.doClick=function(item,event)
+	{
+		console.log(item);
+		console.log(event);
+	};
+});
+</script>
+</head>
+
+<body ng-controller="myCtrl">
+
+<!-- <button ng-click="menu()">toggle</button>
+<div ng-show="showme"> 
+<h2>Menu</h2>
+<p>list</p>
+<p>java</p>
+</div>
+
+<div ng-click="count1 = count1 + 1" ng-init="count1=0">
+<h2>Click</h2>{{count1}}
+</div>
+<div ng-mousemove="count = count + 1" ng-init="count=0"> 
+ <h3>Count on mouse over</h3> {{count}}
+</div> -->
+
+<h4>Event</h4>
+<table>
+<!-- <tr ng-repeat="item in items" ng-class=" $odd ? 'odd' : 'even' " ng-click="doClick(item,$event)">{{item}} &nbsp;&nbsp;{{$index}}&nbsp; {{$first}} &nbsp;{{$last}} &nbsp;{{value}}</tr>
+ -->
+ <tr ng-repeat="item in items">{{item}}</tr>
+</table>
+</body>
+</html>

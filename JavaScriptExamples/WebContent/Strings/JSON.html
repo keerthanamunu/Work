@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>JSON</title>
+<script type="text/javascript">
+Student.prototype.attendance=function()
+{
+	console.log('attendance func');
+};
+
+function Student(id,name,age)
+{
+	this.id=id;
+	this.name=name;
+	this.age=age;
+	this.homeWork=function()
+	{
+		console.log('homework func');
+	};
+};
+
+var r=new Student(101,'keerthana',26);
+var r1=new Student(102,'harshada',23);
+var r2=new Student(103,'Chandra',29);
+
+var school=[r,r1,r2];
+
+console.log(JSON);
+var jsonText=JSON.stringify(school);
+console.log(jsonText);
+
+var JSobj=JSON.parse(jsonText);
+
+JSobj.forEach(function(s,index)
+		{
+			console.log('index '+index);
+			console.log('id :'+s.id+' name :'+s.name+' age : '+s.age);
+		});
+
+</script>
+</head>
+<body>
+JSON
+</body>
+</html>

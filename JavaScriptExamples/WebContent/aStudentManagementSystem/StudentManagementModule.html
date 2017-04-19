@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html ng-app="studentManagementSystem">
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration Form</title>
+<script src="angular.min.js"></script>
+<script src="courseModule.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<script>
+function Course(courseId,courseName,duration,fees)
+{
+	this.courseId=courseId;
+	this.courseName=courseName;
+	this.duration=duration;
+	this.fees=fees;
+};
+
+var module=angular.module("studentManagementSystem",['courseModule']);
+module.controller("CourseRegistrationController",function($scope,$rootScope,CourseRegistrationService)
+{
+		$scope.Register=function()
+		{
+			var courseId=$scope.courseId;
+			var courseName=$scope.courseName;
+			var duration=$scope.duration;
+			var fees=$scope.fees;
+			
+			var cObject  = new Course(courseId,courseName,duration,fees);
+			CourseRegistrationService.registerCourse(cObject);
+			$rootScope.$broadcast("passingEvent",cObject);
+		};
+	
+});
+
+module.controller("CourseDetailController",function($scope,CourseDetailService)
+{	
+				
+					$scope.$on("passingEvent",function(event,args){
+						console.log(event);
+						$scope.courseDetails.push(args);
+					})
+				
+				$scope.courseDetails=CourseDetailService.getCourseDetails();
+			
+});
+</script>
+
+
+</head>
+<body>
+<header>
+<h1>Course Management System</h1>
+</header>
+<br><br><br>
+	
+	<div ng-controller="CourseDetailController" id="divA">
+	
+		<table class="table">
+			<tr class="success">
+				<td>CourseId</td>
+				<td>CourseName</td>
+				<td>Duration</td>
+				<td>Fees</td>
+			</tr>
+			<tr class="info" ng-repeat="c in courseDetails">
+				<td>{{c.courseId}}</td>
+				<td>{{c.courseName}}</td>
+				<td>{{c.duration}}</td>
+				<td>{{c.fees}}</td>
+			</tr>
+		</table>
+	
+	</div>
+	
+	<br><br><br>
+	
+	<div ng-controller="CourseRegistrationController" id="divB">
+	<h2>Course Registration Form</h2>
+	CourseId   : <input type="text" ng-model="courseId"><br><br>
+	CourseName : <input type="text" ng-model="courseName"><br><br>
+	Duration   :<input type="text" ng-model="duration"><br><br>
+	Fees       : <input type="text" ng-model="fees"><br><br>
+	<input type="button" value="Submit" ng-click="Register()">
+	
+	</div>
+	
+	
+<br><br><br>	
+<footer>
+ <h4>Course Managemnet System -Peri Software - March 2017</h4>
+</footer>	
+</body>
+</html>

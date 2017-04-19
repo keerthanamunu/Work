@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="onewayBinding">
+<head>
+<meta charset="ISO-8859-1">
+<title>Controller Examples</title>
+<script src="angular.min.js"></script>
+<script>
+//console.log(angular);
+var module = angular.module("onewayBinding",[]);
+//this controller gets executed only once
+module.controller("testCtrl",function($scope)
+{
+	$scope.value1=10;
+	$scope.value2=$scope.value1*2;
+	
+	console.log($scope);
+//first funct to watch which value we are going to watch
+//second function=== invoked when there is a change explicitly we have to write our logic to change the other valie
+$scope.$watch(function($scope)
+		{
+	return $scope.value1;
+	}, 
+	function(newvalue,oldValue){
+		$scope.value2=newvalue*2;
+	}
+);
+
+});
+</script>
+</head>
+<body ng-controller="testCtrl">
+	<input type="text" ng-model="value1">
+	<br>
+	<input type="text" ng-model="value2">
+	<br> Input value is {{value1}}
+	<div>multiplied by{{value2}}</div>
+</body>
+</html>

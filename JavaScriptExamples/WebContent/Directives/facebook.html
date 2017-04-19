@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="customDirectivesApp">
+
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="jquery-ui.css">
+    <script src="jquery-2.2.2.min.js"></script>
+    <script src="jquery-ui.min.js"></script> 
+    <script src="angular.min.js"></script>
+
+    <script>
+        var module=angular.module('customDirectivesApp',[]);
+
+        module.directive("socialContact",function(){
+            return {
+                templateUrl: "template3.html",
+                restrict:"E"
+            }
+        })
+
+
+       module.directive("customDate",function(){
+            return {
+
+                template: "<input type='text' id='dateText'>",
+                link:function(scope, element, attr) {
+                    $('#dateText').datepicker({
+                        dateFormat:'dd/mm/yy'
+                    });
+                },
+                restrict:"E"
+            }
+        })
+
+
+    </script>
+</head>
+<body>
+
+<custom-date></custom-date> 
+<br>
+<social-contact></social-contact>
+</body>
+</html>
